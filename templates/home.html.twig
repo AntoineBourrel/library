@@ -3,15 +3,17 @@
 {% block main %}
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 text-center">
                 <h1>Bienvenue Lecteur !!!!</h1>
             </div>
             <div class="col-12">
                 <h3>Nos dernière parution</h3>
             </div>
-            <div class="col-12 block-book">
+            <div class="col-12">
                 {% for book in lastBooks %}
-                    <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{% include '_book.html.twig' %}</a>
+                    <div class="block-book">
+                        <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{% include '_book.html.twig' %}</a>
+                    </div>
                 {% endfor %}
             </div>
         </div>

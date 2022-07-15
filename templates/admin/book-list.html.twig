@@ -12,11 +12,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 bloc-book">
+            <div class="col-12">
                 {% for book in books %}
-                    <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{% include '_book.html.twig' %}</a>
-                    <a href="{{ path('admin_book_update', {'id' : book.id }) }}" class="btn bg-info">Modifier</a>
-                    <a href="{{ path('admin_book_delete', {'id' : book.id }) }}" class="btn bg-info">Supprimer</a>
+                    <div class="block-book">
+                        <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{% include '_book.html.twig' %}</a>
+                        <a href="{{ path('admin_book_update', {'id' : book.id }) }}" class="btn bg-info">Modifier</a>
+                        <a href="{{ path('admin_book_delete', {'id' : book.id }) }}" class="btn bg-info">Supprimer</a>
+                    </div>
+
                 {% endfor %}
             </div>
         </div>

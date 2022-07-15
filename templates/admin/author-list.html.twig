@@ -10,11 +10,14 @@
             <div class="col-12">
                 <a href="{{ path('admin_author_insert') }}" class="btn bg-info">Entrer un nouvel auteur</a>
             </div>
-            <div class="col-12 block-author">
+            <div class="col-12">
                 {% for author in authors %}
-                    <a href="{{ path('admin_author_show', {'id' : author.id }) }}">{% include '_author.html.twig' %}</a>
-                    <a href="{{ path('admin_author_update', {'id' : author.id }) }}" class="btn bg-info">Modifier</a>
-                    <a href="{{ path('admin_author_delete', {'id' : author.id }) }}" class="btn bg-info">Supprimer</a>
+                    <div class="block-author">
+                        <a href="{{ path('admin_author_show', {'id' : author.id }) }}">{% include '_author.html.twig' %}</a>
+                        <a href="{{ path('admin_author_update', {'id' : author.id }) }}" class="btn bg-info">Modifier</a>
+                        <a href="{{ path('admin_author_delete', {'id' : author.id }) }}" class="btn bg-info">Supprimer</a>
+                    </div>
+
                 {% endfor %}
             </div>
         </div>

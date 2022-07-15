@@ -105,6 +105,24 @@ class AdminBookController extends AbstractController
             // Utilisation de la méthode createView pour créer la view du formulaire
             'form' => $form->createView()
         ]);
+    }
 
+    //méthode de recherche d'un titre dans la bdd
+    /**
+     * @Route("/admin/book-search", name="admin_book_search")
+     */
+    public function bookSearch(Request $request, BookRepository $bookRepository){
+        // Récupération valeur GET dans l'URL
+        $search = $request->query->get('search');
+
+        // je vais créer une méthode dans le BookRepository
+        // qui trouve un livre en fonction d'un mot dans son titre
+        $books = $bookRepository->searchByWord($search);
+
+
+        // Renvoie vers le fichier twig
+        return $this->render('admin/book-search.html.twig', [
+            'books' => $books
+        ]);
     }
 }
