@@ -12,11 +12,20 @@
     <body>
         <header>
             <ul>
-                <li><a href="">Accueil</a></li>
-                <li><a href="">Liste par titres</a></li>
+                <li><a href="{{ path('home') }}">Accueil</a></li>
+                <li><a href="{{ path('admin_book_list') }}">Liste par titres</a></li>
                 <li><a href="">Liste par Auteurs</a></li>
             </ul>
         </header>
+
+        {% for message in app.flashes('success') %}
+            <p class="message-success">{{ message }}</p>
+        {% endfor %}
+
+        {% for message in app.flashes('error') %}
+            <p class="message-error">{{ message }}</p>
+        {% endfor %}
+
         {% block main %}{% endblock %}
         <footer>
             <p>copyright - La Piscine 2022</p>
