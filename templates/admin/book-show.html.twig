@@ -5,5 +5,18 @@
 {% endblock %}
 
 {% block main %}
-    {% include '_book.html.twig' %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="book">
+                    <h2>{{ book.title }}</h2>
+                    <p>nombre de pages : {{ book.nbPages }}</p>
+                    <p>année de parution : {{ book.publishedAt | date('d-m-y') }}</p>
+                    {% if book.author is not null %}
+                        auteur :<a href="{{ path('admin_author_show', {'id' : book.author.id}) }}">{{ book.author.firstName }} {{ book.author.lastName }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

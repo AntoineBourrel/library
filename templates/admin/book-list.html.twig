@@ -5,10 +5,20 @@
 {% endblock %}
 
 {% block main %}
-    <a href="{{ path('admin_book_insert') }}" class="btn">Entrer un nouveau livre dans la librairie</a>
-    {% for book in books %}
-        <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{% include '_book.html.twig' %}</a>
-        <a href="{{ path('admin_book_update', {'id' : book.id }) }}" class="btn">Modifier</a>
-        <a href="{{ path('admin_book_delete', {'id' : book.id }) }}" class="btn">Supprimer</a>
-    {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <a href="{{ path('admin_book_insert') }}" class="btn bg-info">Entrer un nouveau livre dans la librairie</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 bloc-book">
+                {% for book in books %}
+                    <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{% include '_book.html.twig' %}</a>
+                    <a href="{{ path('admin_book_update', {'id' : book.id }) }}" class="btn bg-info">Modifier</a>
+                    <a href="{{ path('admin_book_delete', {'id' : book.id }) }}" class="btn bg-info">Supprimer</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}

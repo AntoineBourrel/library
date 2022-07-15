@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Form\BookType;
 use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,17 +41,27 @@ class AdminBookController extends AbstractController
     /**
      * @Route ("/admin/book-insert", name="admin_book_insert")
      */
-    public function bookInsert(EntityManagerInterface $entityManager){
+    public function bookInsert(EntityManagerInterface $entityManager, Request $request){
         $book = new Book();
-        $book->setTitle('The Fellowship of the Ring');
-        $book->setNbPages(423);
-        $book->setPublishedAt(new \DateTime('1954-07-29'));
+        // Création d'un formulaire lié à la table Article via ses paramètres lié à l'instance d'Article
+        $form = $this->createForm(BookType::class, $book);
 
-        $entityManager->persist($book);
-        $entityManager->flush();
+        // On donne la variable form une instance de Request pour que le formulaire puisse
+        // récupérer les données et les traiter automatiquement
+        $form->handleRequest($request);
 
-        $this->addFlash('success', 'Vous avez bien ajouté votre livre');
-        return $this->redirectToRoute('admin_book_list');
+        // Si le formulaire à été posté et que les données sont valides, on envoie sur la base de données
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($book);
+            $entityManager->flush();
+            $this->addFlash('success', 'Vous avez bien ajouté votre livre');
+        }
+
+        return $this->render('Admin/book-insert.html.twig', [
+            // Utilisation de la méthode createView pour créer la view du formulaire
+            'form' => $form->createView()
+        ]);
+
     }
 
     // Méthode suppression de fiche de livre
@@ -74,17 +85,26 @@ class AdminBookController extends AbstractController
     /**
      * @Route("/admin/book-update/{id}", name="admin_book_update")
      */
-    public function bookUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager){
+    public function bookUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager, Request $request){
         $book = $bookRepository->find($id);
-        $book->setTitle('Test Update');
-        $book->setNbPages(0);
-        $book->setPublishedAt(new \DateTime('now'));
+        // Création d'un formulaire lié à la table Article via ses paramètres lié à l'instance d'Article
+        $form = $this->createForm(BookType::class, $book);
 
-        $entityManager->persist($book);
-        $entityManager->flush();
+        // On donne la variable form une instance de Request pour que le formulaire puisse
+        // récupérer les données et les traiter automatiquement
+        $form->handleRequest($request);
 
-        $this->addFlash('success', 'Vous avez bien modifié votre livre');
-        return $this->redirectToRoute('admin_book_list');
+        // Si le formulaire à été posté et que les données sont valides, on envoie sur la base de données
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($book);
+            $entityManager->flush();
+            $this->addFlash('success', 'Vous avez bien ajouté votre livre');
+        }
+
+        return $this->render('Admin/book-insert.html.twig', [
+            // Utilisation de la méthode createView pour créer la view du formulaire
+            'form' => $form->createView()
+        ]);
 
     }
 }

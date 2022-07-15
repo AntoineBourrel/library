@@ -5,9 +5,16 @@
 {% endblock %}
 
 {% block main %}
-    <h2>{{ author.firstName }} {{ author.lastName }}</h2>
-    <p>né le {{ author.birthDate | date('d-m-y') }}</p>
-    {% if author.deathDate is not null %}
-        <p>mort le {{ author.deathDate | date('d-m-y') }}</p>
-    {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>{{ author.firstName }} {{ author.lastName }}</h2>
+                <p>né le {{ author.birthDate | date('d-m-y') }}</p>
+                {% if author.deathDate is not null %}
+                    <p>mort le {{ author.deathDate | date('d-m-y') }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

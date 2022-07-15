@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,8 +14,11 @@ class HomeController extends AbstractController
     /**
      * @Route ("/", name="home")
      */
-    public function home()
+    public function home(BookRepository $bookRepository)
     {
-        return $this->render('home.html.twig');
+        $lastBooks = $bookRepository->findBy([], ['id' => 'DESC'],3);
+        return $this->render('home.html.twig', [
+            'lastBooks' => $lastBooks
+        ]);
     }
 }
