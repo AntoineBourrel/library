@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Liste par titre
+    Liste par auteurs
 {% endblock %}
 
 {% block main %}
-    {% for book in books %}
-        {% include '_book.html.twig' %}
+    {% for author in authors %}
+        {% include '_author.html.twig' %}
     {% endfor %}
 {% endblock %}

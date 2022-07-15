@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ author.firstName }} {{ author.lastName }}
+{% endblock %}
+
+{% block main %}
+    <h2>{{ author.firstName }} {{ author.lastName }}</h2>
+    <p>né le {{ author.birthDate | date('d-m-y') }}</p>
+    {% if author.deathDate is not null %}
+        <p>mort le {{ author.deathDate | date('d-m-y') }}</p>
+    {% endif %}
+{% endblock %}
