@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block main %}
+    <a href="{{ path('admin_author_insert') }}" class="btn">Entrer un nouvel auteur</a>
     {% for author in authors %}
-        {% include '_author.html.twig' %}
+        <a href="{{ path('admin_author_show', {'id' : author.id }) }}"></a>{% include '_author.html.twig' %}
+        <a href="{{ path('admin_author_update', {'id' : author.id }) }}" class="btn">Modifier</a>
+        <a href="{{ path('admin_author_delete', {'id' : author.id }) }}" class="btn">Supprimer</a>
     {% endfor %}
 {% endblock %}

@@ -78,7 +78,7 @@ class AdminBookController extends AbstractController
         $book = $bookRepository->find($id);
         $book->setTitle('Test Update');
         $book->setNbPages(0);
-        book->setPublishedAt(new \DateTime('now'));
+        $book->setPublishedAt(new \DateTime('now'));
 
         $entityManager->persist($book);
         $entityManager->flush();

@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block main %}
+    <a href="{{ path('admin_book_insert') }}" class="btn">Entrer un nouveau livre dans la librairie</a>
     {% for book in books %}
-        {% include '_book.html.twig' %}
+        <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{% include '_book.html.twig' %}</a>
+        <a href="{{ path('admin_book_update', {'id' : book.id }) }}" class="btn">Modifier</a>
+        <a href="{{ path('admin_book_delete', {'id' : book.id }) }}" class="btn">Supprimer</a>
     {% endfor %}
 {% endblock %}
