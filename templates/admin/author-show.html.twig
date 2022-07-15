@@ -15,6 +15,15 @@
                 {% endif %}
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <h4>Livre par cet auteur</h4>
+                {% for book in author.books %}
+                    <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{{ book.title }}</a>
+                    <br>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 {% endblock %}
