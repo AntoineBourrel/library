@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Form\BookType;
+use App\Repository\AuthorRepository;
 use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -111,18 +112,20 @@ class AdminBookController extends AbstractController
     /**
      * @Route("/admin/book-search", name="admin_book_search")
      */
-    public function bookSearch(Request $request, BookRepository $bookRepository){
+    public function bookSearch(Request $request, BookRepository $bookRepository, AuthorRepository $authorRepository){
         // Récupération valeur GET dans l'URL
         $search = $request->query->get('search');
 
         // je vais créer une méthode dans le BookRepository
         // qui trouve un livre en fonction d'un mot dans son titre
         $books = $bookRepository->searchByWord($search);
+        $authors = $authorRepository->searchByWord($search);
 
 
         // Renvoie vers le fichier twig
         return $this->render('admin/book-search.html.twig', [
-            'books' => $books
+            'books' => $books,
+            'authors' =>$authors
         ]);
     }
 }

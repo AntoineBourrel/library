@@ -45,7 +45,7 @@ class BookRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('book');
         // SELECT de la table Article
         $query = $qb->select('book')
-            // Recupération des livre où le titre est 'search'
+            // Recupération des livres où le titre est 'search'
             ->where('book.title LIKE :search')
             // Paramétrage de 'search' où il sera trouvé malgré présence, avant ou après,
             // des caractères de la chaine de caractères $search

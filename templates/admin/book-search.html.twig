@@ -5,8 +5,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
+                    <h4>Livres trouvés</h4>
                     {% for book in books %}
                         <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{%  include '_book.html.twig' %}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    <h4>Auteurs trouvés</h4>
+                    {% for author in authors %}
+                        <a href="{{ path('admin_author_show', {'id' : author.id }) }}">{%  include '_author.html.twig' %}</a>
                     {% endfor %}
                 </div>
             </div>

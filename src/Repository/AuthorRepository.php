@@ -39,6 +39,24 @@ class AuthorRepository extends ServiceEntityRepository
         }
     }
 
+    public function searchByWord($search){
+
+        // Création du query builder qui permet de faire des requêtes SQL en PHP
+        $qb = $this->createQueryBuilder('author');
+        // SELECT de la table author
+        $query = $qb->select('author')
+            // Recupération des auteurs où le nom est 'search'
+            ->where('author.lastName LIKE :search')
+            ->orWhere('author.firstName LIKE :search')
+            // Paramétrage de 'search' où il sera trouvé malgré présence, avant ou après,
+            // des caractères de la chaine de caractères $search
+            ->setParameter('search', '%'.$search.'%')
+            // Récupération de la requête
+            ->getQuery();
+        //renvoie en base de données
+        return $query->getResult();
+    }
+
 //    /**
 //     * @return Author[] Returns an array of Author objects
 //     */
