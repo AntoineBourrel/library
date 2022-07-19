@@ -44,7 +44,7 @@ class AdminBookController extends AbstractController
      */
     public function bookInsert(EntityManagerInterface $entityManager, Request $request){
         $book = new Book();
-        // Création d'un formulaire lié à la table Article via ses paramètres lié à l'instance d'Article
+        // Création d'un formulaire lié à la table Book via ses paramètres lié à l'instance de Book
         $form = $this->createForm(BookType::class, $book);
 
         // On donne la variable form une instance de Request pour que le formulaire puisse

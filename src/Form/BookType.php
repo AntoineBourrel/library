@@ -20,7 +20,9 @@ class BookType extends AbstractType
             ->add('publishedAt')
             ->add('author', EntityType::class, [
                 'class' => Author::class,
-                'choice_label' => 'lastName'
+                'choice_label' => function($author){
+                    return $author->getFirstName() . " " . $author->getLastName();
+                }
             ])
             ->add('submit', SubmitType::class)
         ;
