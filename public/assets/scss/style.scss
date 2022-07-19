@@ -1,5 +1,7 @@
 @import "footer.scss";
 
+$color : black;
+
 a{
   text-decoration: none;
   color: black;
@@ -9,8 +11,17 @@ h1 {
   margin: 1rem;
 }
 
+img{
+  width: 100px;
+  margin: 1rem;
+}
+
+.book{
+  display: flex;
+}
+
 .block-book{
-  border: 1px solid black;
+  border: 1px solid $color;
   padding: 0.5rem;
   margin: 1rem 0;
 }
