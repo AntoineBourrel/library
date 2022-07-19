@@ -28,6 +28,9 @@ class Book
     #[ORM\JoinColumn(nullable: true)]
     private $author;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,7 @@ class Book
 
         return $this;
     }
+
 
     public function getNbPages(): ?int
     {
@@ -67,6 +71,16 @@ class Book
         $this->publishedAt = $publishedAt;
 
         return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): void
+    {
+        $this->image = $image;
     }
 
     public function getAuthor(): ?Author

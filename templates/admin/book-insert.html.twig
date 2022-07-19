@@ -25,6 +25,8 @@
                 {{ form_widget(form.author, {'attr': {'class': 'form-book-auteur-widget form-control'}}) }}
                 {{ form_errors(form.author) }}
                 <br>
+                {{ form_row(form.image) }}
+                <br>
                 {{ form_label(form.submit, 'Submit', {'label_attr': {'class': 'form-book-submit-label'}}) }}
                 {{ form_widget(form.submit, {'attr': {'class': 'form-book-submit-widget btn bg-warning'}}) }}
                 {{ form_end(form) }}
