@@ -8,7 +8,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="book">
+                <div class="book_show">
+                    <img src="{{ asset('uploads/images/' ~ book.image) }}" alt="image">
                     <h2>{{ book.title }}</h2>
                     <p>nombre de pages : {{ book.nbPages }}</p>
                     <p>année de parution : {{ book.publishedAt | date('d-m-y') }}</p>

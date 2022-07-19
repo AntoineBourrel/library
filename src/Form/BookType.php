@@ -27,7 +27,8 @@ class BookType extends AbstractType
             ])
             ->add('image', FileType::class, [
                 'label' => 'image',
-                'required' => false
+                'required' => false,
+                'mapped' => false
             ])
             ->add('submit', SubmitType::class)
         ;

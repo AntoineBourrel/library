@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class AdminBookController extends AbstractController
 {
@@ -42,7 +43,7 @@ class AdminBookController extends AbstractController
     /**
      * @Route ("/admin/book-insert", name="admin_book_insert")
      */
-    public function bookInsert(EntityManagerInterface $entityManager, Request $request){
+    public function bookInsert(EntityManagerInterface $entityManager, Request $request, SluggerInterface $slugger){
         $book = new Book();
         // Création d'un formulaire lié à la table Book via ses paramètres lié à l'instance de Book
         $form = $this->createForm(BookType::class, $book);
@@ -53,6 +54,19 @@ class AdminBookController extends AbstractController
 
         // Si le formulaire à été posté et que les données sont valides, on envoie sur la base de données
         if($form->isSubmitted() && $form->isValid()){
+            $image = $form->get('image')->getData();
+            $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            // this is needed to safely include the file name as part of the URL
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+
+            $image->move(
+                $this->getParameter('images_directory'),
+                $newFilename
+            );
+
+            $book->setImage($newFilename);
+
             $entityManager->persist($book);
             $entityManager->flush();
             $this->addFlash('success', 'Vous avez bien ajouté votre livre');
@@ -86,7 +100,7 @@ class AdminBookController extends AbstractController
     /**
      * @Route("/admin/book-update/{id}", name="admin_book_update")
      */
-    public function bookUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager, Request $request){
+    public function bookUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager, Request $request, SluggerInterface $slugger){
         $book = $bookRepository->find($id);
         // Création d'un formulaire lié à la table Article via ses paramètres lié à l'instance d'Article
         $form = $this->createForm(BookType::class, $book);
@@ -97,14 +111,28 @@ class AdminBookController extends AbstractController
 
         // Si le formulaire à été posté et que les données sont valides, on envoie sur la base de données
         if($form->isSubmitted() && $form->isValid()){
+            $image = $form->get('image')->getData();
+            $originalFilename = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+            // this is needed to safely include the file name as part of the URL
+            $safeFilename = $slugger->slug($originalFilename);
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$image->guessExtension();
+
+            $image->move(
+                $this->getParameter('images_directory'),
+                $newFilename
+            );
+
+            $book->setImage($newFilename);
+
             $entityManager->persist($book);
             $entityManager->flush();
-            $this->addFlash('success', 'Vous avez bien ajouté votre livre');
+            $this->addFlash('success', 'Vous avez bien modifié votre livre');
         }
 
-        return $this->render('Admin/book-insert.html.twig', [
+        return $this->render('Admin/book-update.html.twig', [
             // Utilisation de la méthode createView pour créer la view du formulaire
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'book' => $book
         ]);
     }
 

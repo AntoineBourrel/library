@@ -1,8 +1,15 @@
 <div class="book">
-    <h2>{{ book.title }}</h2>
-    <p>nombre de pages : {{ book.nbPages }}</p>
-    <p>année de parution : {{ book.publishedAt | date('d-m-y') }}</p>
-    {% if book.author is not null %}
-        <p>auteur : {{ book.author.firstName }} {{ book.author.lastName }}</p>
+    {% if book.image %}
+        <div class="image">
+            <img src="{{ asset('uploads/images/' ~ book.image) }}" alt="image book">
+        </div>
     {% endif %}
+    <div class="info">
+        <h2>{{ book.title }}</h2>
+        <p>nombre de pages : {{ book.nbPages }}</p>
+        <p>année de parution : {{ book.publishedAt | date('d-m-y') }}</p>
+        {% if book.author is not null %}
+            <p>auteur : {{ book.author.firstName }} {{ book.author.lastName }}</p>
+        {% endif %}
+    </div>
 </div>
