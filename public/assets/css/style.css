@@ -23,9 +23,12 @@ img {
 .book {
   display: flex;
 }
+.book h2 {
+  color: gold;
+}
 
 .block-book {
-  border: 1px solid black;
+  border: 1px solid gold;
   padding: 0.5rem;
   margin: 1rem 0;
 }
@@ -38,6 +41,19 @@ img {
 
 .btn {
   margin: 1rem;
+  background-color: red;
+}
+
+.message, .message-error, .message-success {
+  text-transform: uppercase;
+}
+
+.message-success {
+  background-color: green;
+}
+
+.message-error {
+  background-color: red;
 }
 
 /*# sourceMappingURL=style.css.map */
