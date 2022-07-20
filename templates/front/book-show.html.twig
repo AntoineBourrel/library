@@ -1,4 +1,4 @@
-{% extends 'admin/base.html.twig' %}
+{% extends 'front/base.html.twig' %}
 
 {% block title %}
     {{ book.title }}
@@ -14,7 +14,7 @@
                     <p>nombre de pages : {{ book.nbPages }}</p>
                     <p>année de parution : {{ book.publishedAt | date('d-m-y') }}</p>
                     {% if book.author is not null %}
-                        auteur :<a href="{{ path('admin_author_show', {'id' : book.author.id}) }}">{{ book.author.firstName }} {{ book.author.lastName }}</a>
+                        auteur :<a href="{{ path('author_show', {'id' : book.author.id}) }}">{{ book.author.firstName }} {{ book.author.lastName }}</a>
                     {% endif %}
                 </div>
             </div>

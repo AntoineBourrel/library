@@ -1,0 +1,19 @@
+{% extends 'front/base.html.twig' %}
+
+{% block title %}
+    Liste par auteurs
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                {% for author in authors %}
+                    <div class="block-author">
+                        <a href="{{ path('author_show', {'id' : author.id }) }}">{% include '_author.html.twig' %}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

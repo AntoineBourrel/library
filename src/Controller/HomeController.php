@@ -17,7 +17,18 @@ class HomeController extends AbstractController
     public function home(BookRepository $bookRepository)
     {
         $lastBooks = $bookRepository->findBy([], ['id' => 'DESC'],3);
-        return $this->render('home.html.twig', [
+        return $this->render('front/home.html.twig', [
+            'lastBooks' => $lastBooks
+        ]);
+    }
+
+    /**
+     * @Route ("/admin/", name="admin_home")
+     */
+    public function adminHome(BookRepository $bookRepository)
+    {
+        $lastBooks = $bookRepository->findBy([], ['id' => 'DESC'],3);
+        return $this->render('admin/home.html.twig', [
             'lastBooks' => $lastBooks
         ]);
     }

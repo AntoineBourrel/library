@@ -24,10 +24,13 @@
                                 <a class="nav-link" href="{{ path('home') }}">Accueil</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin_book_list') }}">Liste par titres</a>
+                                <a class="nav-link" href="{{ path('book_list') }}">Liste par titres</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('admin_author_list') }}">Liste par auteurs</a>
+                                <a class="nav-link" href="{{ path('author_list') }}">Liste par auteurs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
@@ -49,6 +52,7 @@
         {% for message in app.flashes('error') %}
             <p class="message-error">{{ message }}</p>
         {% endfor %}
+
 
         {% block main %}{% endblock %}
         <footer>
