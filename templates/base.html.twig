@@ -29,6 +29,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('admin_author_list') }}">Liste par auteurs</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                            </li>
                         </ul>
                         <form class="d-flex" role="search" action="{{ path('admin_book_search') }}" method="get">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
