@@ -7,14 +7,20 @@
             <h1>Bienvenue {{ app.user.email }} !!!!</h1>
         </div>
         <div class="col-12">
-            <h3>Nos dernière parution</h3>
+            <h3>Settings</h3>
         </div>
         <div class="col-12">
-            {% for book in lastBooks %}
-                <div class="block-book">
-                    <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{% include '_book.html.twig' %}</a>
-                </div>
-            {% endfor %}
+            <div class="block-book">
+                <a href="{{ path('admin_book_list') }}">Liste par titres</a>
+            </div>
+            <br>
+            <div class="block-book">
+                <a href="{{ path('admin_author_list') }}">Lista par auteurs</a>
+            </div>
+            <br>
+            <div class="block-book">
+                <a href="{{ path('admin_admin_list') }}">Liste Admin</a><br>
+            </div>
         </div>
     </div>
 </div>
