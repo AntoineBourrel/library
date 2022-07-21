@@ -25,10 +25,6 @@
         {{ form_widget(form.deathDate, {'attr': {'class': 'form-author-deathDate-widget form-control'}}) }}
         {{ form_errors(form.deathDate) }}
         <br>
-        {{ form_label(form.image, 'Image') }}
-        {{ form_widget(form.image) }}
-        {{ form_errors(form.image) }}
-        <br>
         {{ form_label(form.submit, 'Submit', {'label_attr': {'class': 'form-author-submit-label'}}) }}
         {{ form_widget(form.submit, {'attr': {'class': 'form-author-submit-widget btn bg-warning'}}) }}
         {{ form_end(form) }}

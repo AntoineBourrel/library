@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 text-center">
-            <h1>Bienvenue Lecteur !!!!</h1>
+            <h1>Bienvenue {{ app.user.email }} !!!!</h1>
         </div>
         <div class="col-12">
             <h3>Nos dernière parution</h3>
@@ -12,7 +12,7 @@
         <div class="col-12">
             {% for book in lastBooks %}
                 <div class="block-book">
-                    <a href="{{ path('book_show', {'id' : book.id }) }}">{% include '_book.html.twig' %}</a>
+                    <a href="{{ path('admin_book_show', {'id' : book.id }) }}">{% include '_book.html.twig' %}</a>
                 </div>
             {% endfor %}
         </div>
