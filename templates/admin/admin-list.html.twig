@@ -18,6 +18,7 @@
                         {% for role in admin.roles %}
                             <span>{{ role }} | </span>
                         {% endfor %}
+                        <a href="{{ path('admin_admin_update', {'id' : admin.id }) }}" class="btn bg-info">Modifier</a>
                         <a href="{{ path('admin_admin_delete', {'id' : admin.id }) }}" class="btn bg-info">Supprimer</a>
                     {% endfor %}
                 </div>
