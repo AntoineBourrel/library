@@ -34,9 +34,12 @@ class AdminAdminController extends AbstractController
     {
         $user = new User();
         $user->setRoles(["ROLE_ADMIN"]);
-
+        // Création d'un formulaire lié à la table User via ses paramètres lié à l'instance d'Article
         $form = $this->createForm(UserType::class, $user);
+        // On donne la variable form une instance de Request pour que le formulaire puisse
+        // récupérer les données et les traiter automatiquement
         $form->handleRequest($request);
+        // Si le formulaire à été posté et que les données sont valides, on envoie sur la base de données
         if($form->isSubmitted() && $form->isValid()){
 
             $plainPassword = $form->get('password')->getData();
@@ -50,6 +53,7 @@ class AdminAdminController extends AbstractController
         }
 
         return $this->render('admin/admin-insert.html.twig',[
+            // Utilisation de la méthode createView pour créer la view du formulaire
             'form' => $form->createView()
         ]);
     }
@@ -77,9 +81,12 @@ class AdminAdminController extends AbstractController
     public function adminUpdate($id, EntityManagerInterface $entityManager, UserRepository $userRepository, Request $request, UserPasswordHasherInterface $userPasswordHasher)
     {
         $user = $userRepository->find($id);
-
+        // Création d'un formulaire lié à la table User via ses paramètres lié à l'instance d'Article
         $form = $this->createForm(UserType::class, $user);
+        // On donne la variable form une instance de Request pour que le formulaire puisse
+        // récupérer les données et les traiter automatiquement
         $form->handleRequest($request);
+        // Si le formulaire à été posté et que les données sont valides, on envoie sur la base de données
         if($form->isSubmitted() && $form->isValid()){
 
             $plainPassword = $form->get('password')->getData();
@@ -93,6 +100,7 @@ class AdminAdminController extends AbstractController
         }
 
         return $this->render('admin/admin-update.html.twig',[
+            // Utilisation de la méthode createView pour créer la view du formulaire
             'form' => $form->createView()
         ]);
     }

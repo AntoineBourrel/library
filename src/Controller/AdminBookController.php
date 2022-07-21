@@ -102,7 +102,7 @@ class AdminBookController extends AbstractController
      */
     public function bookUpdate($id, BookRepository $bookRepository, EntityManagerInterface $entityManager, Request $request, SluggerInterface $slugger){
         $book = $bookRepository->find($id);
-        // Création d'un formulaire lié à la table Article via ses paramètres lié à l'instance d'Article
+        // Création d'un formulaire lié à la table Book via ses paramètres lié à l'instance d'Article
         $form = $this->createForm(BookType::class, $book);
 
         // On donne la variable form une instance de Request pour que le formulaire puisse
