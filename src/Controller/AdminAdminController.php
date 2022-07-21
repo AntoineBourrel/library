@@ -53,4 +53,21 @@ class AdminAdminController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+
+    /**
+     * @Route("/admin/admin-delete/{id}", name="admin_admin_delete")
+     */
+    public function adminDelete($id, EntityManagerInterface $entityManager, UserRepository $userRepository)
+    {
+        $user = $userRepository->find($id);
+        if(!is_null($user))
+        {
+            $entityManager->remove($user);
+            $entityManager->flush();
+            $this->addFlash('success', "Vous avez bien supprimé l'admin ");
+            return $this->redirectToRoute('admin_admin_list');
+        }
+        $this->addFlash('error', 'Admin introuvable');
+        return $this->redirectToRoute('admin_admin_list');
+    }
 }
