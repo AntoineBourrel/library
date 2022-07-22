@@ -20,6 +20,22 @@ img {
   margin: 1rem;
 }
 
+.icons {
+  display: none !important;
+}
+
+.d-b {
+  display: none;
+}
+
+@media screen and (max-width: 640px) {
+  .menu-desktop {
+    display: none;
+  }
+  .icons {
+    display: block !important;
+  }
+}
 .book {
   display: flex;
 }
