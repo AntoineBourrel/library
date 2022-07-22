@@ -18,6 +18,6 @@ nightToggleBtn.addEventListener('click', function(){
         nightToggleBtn.innerText = "Night Mode";
         localStorage.setItem('isNightMode', false);
     } else if(body.className == "night-template" || localStorage.getItem('isNightMode') === 'true') {
-        nightToggleBtn.innerText = "light Mode";
+        nightToggleBtn.innerText = "Day Mode";
     }
 });
