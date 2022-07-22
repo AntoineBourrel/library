@@ -3,6 +3,7 @@ const body = document.querySelector('body');
 
 if (localStorage.getItem('isNightMode') === 'true') {
     body.classList.add('night-template');
+    nightToggleBtn.innerText = "light Mode";
 }
 
 
